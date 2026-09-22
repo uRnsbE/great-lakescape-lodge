@@ -1,0 +1,168 @@
+﻿@charset "utf-8";
+
+/*
+   New Perspectives on HTML5 and CSS3, 7th Edition
+   Tutorial 2
+   Case Problem 4
+   
+   Great Lakescape Lodge Style Sheet
+   Author: Zhaoye
+   Date:   2026.09.22
+   
+   Filename: lake_styles.css
+
+*/
+
+/* ===== Web Fonts ===== */
+
+/* Champagne: decorative script face for headings */
+@font-face {
+   font-family: Champagne;
+   src: url('cac_champagne.woff') format('woff'),
+        url('cac_champagne.ttf') format('truetype');
+}
+
+/* Dobkin: condensed display face for body text */
+@font-face {
+   font-family: Dobkin;
+   src: url('DobkinPlain.woff') format('woff'),
+        url('DobkinPlain.ttf') format('truetype');
+}
+
+/* Body copy uses Dobkin, with a generic sans-serif fallback */
+body {
+   font-family: Dobkin, sans-serif;
+}
+
+/* Headings use the Champagne script face */
+h1, h2 {
+   font-family: Champagne, cursive;
+}
+
+/* ===== Colors ===== */
+
+/* Ivory page background with dark grey text (hex color value) */
+body {
+   background-color: ivory;
+   color: #2b2b2b;
+}
+
+/* Dark slate green behind the logo and navigation (color name) */
+header {
+   background-color: darkslategray;
+}
+
+/* Light link color so the nav stays readable on the dark header */
+header a {
+   color: ivory;
+   text-decoration: none;
+}
+
+/* Saddle brown headings for a warm, outdoorsy feel */
+h1, h2 {
+   color: #8b4513;
+}
+
+/* Translucent green tint separates the aside boxes from the page */
+aside {
+   background-color: rgba(47, 79, 79, 0.12);
+}
+
+/* Footer repeats the header color band, written with rgb() */
+footer {
+   background-color: rgb(47, 79, 79);
+   color: ivory;
+}
+
+/* ===== Selectors & Spacing ===== */
+
+/* id selector: breathing room between the two columns */
+#rightcol {
+   padding-left: 24px;
+}
+
+/* child selector (>): pads only the asides that are direct children */
+#leftcol > aside {
+   padding: 16px 20px;
+}
+
+/* descendant selector: looser line spacing for easier reading */
+#leftcol p {
+   line-height: 1.6;
+   margin-bottom: 1em;
+}
+
+/* ===== Lists & Markers ===== */
+
+/* Square markers for the right-column link lists */
+#rightcol nav ul {
+   list-style-type: square;
+}
+
+/* Marker removed so ::before can supply a custom bullet */
+#leftcol aside ul {
+   list-style-type: none;
+}
+
+/* ===== Pseudo-classes ===== */
+
+/* Lightens the nav item under the pointer */
+header a:hover {
+   background-color: #4a6b6b;
+   text-decoration: underline;
+}
+
+/* ===== Pseudo-elements ===== */
+
+/* Custom brown triangle bullet for the Notes list */
+#leftcol aside li::before {
+   content: "\25B8  ";
+   color: #8b4513;
+}
+
+/* Decorative opening quote before the guest testimonial */
+#rightcol blockquote::before {
+   content: "\201C";
+   color: #8b4513;
+}
+
+/* ===== Flexbox & Grid Layout ===== */
+
+/* Two-column page grid; header and footer span the full width */
+body {
+   display: grid;
+   grid-template-columns: 70% 28%;
+   column-gap: 2%;
+}
+
+/* Header and footer sit across both grid columns */
+body > header,
+body > footer {
+   grid-column: 1 / -1;
+}
+
+/* Reset the float-based widths inherited from lake_layout.css */
+body > section#leftcol,
+body > section#rightcol {
+   width: auto;
+   margin-right: 0;
+}
+
+/* Navigation becomes a plain block holding a flex row */
+header > nav {
+   display: block;
+}
+
+/* Flexbox row: the six list items share the width evenly */
+header > nav > ul {
+   display: flex;
+   list-style-type: none;
+   margin: 0;
+   padding: 0;
+}
+
+/* Each nav item takes an equal share of the row */
+header > nav > ul > li {
+   flex: 1;
+   text-align: center;
+}
